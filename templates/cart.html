@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - HaveABreak Coffee Shop</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Your Cart</h1>
+    </header>
+    
+    <main>
+        <section id="cart-items">
+            {% if cart %}
+                <ul>
+                    {% for key, item in cart.items() %}
+                        <li>
+                            <p>{{ item.product_type.title() }} {{ item.size.title() }}</p>
+                            <p>Quantity: {{ item.quantity }}</p>
+                            <p>Price: {{ item.price }} TRY</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <p>Total Price: {{ total_price }} TRY</p>
+                <a href="#" class="btn">Proceed to Checkout</a>
+            {% else %}
+                <p>Your cart is empty.</p>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 HaveABreak Coffee Shop. All rights reserved.</p>
+    </footer>
+</body>
+</html>

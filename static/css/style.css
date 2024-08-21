@@ -1,0 +1,198 @@
+/* General Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #FDE3CA;
+    color: #500711;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #ED9BBD;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    color: #500711;
+    font-size: 2.5em;
+}
+
+main {
+    padding: 20px;
+}
+
+/* Filter Form Styling */
+#filter-form {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#filter-form label {
+    font-size: 1.2em;
+    margin-right: 10px;
+}
+
+#filter-form select {
+    padding: 8px;
+    border: 1px solid #500711;
+    border-radius: 5px;
+    background-color: #FDE3CA;
+    color: #500711;
+    font-size: 1em;
+}
+
+#filter-form .btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: #500711;
+    color: #FDE3CA;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+/* Product Section Styling */
+#products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.menu-item {
+    background-color: #ED9BBD;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.menu-item img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.menu-item h3 {
+    margin: 15px 0 10px;
+    font-size: 1.5em;
+    color: #500711;
+}
+
+.menu-item p {
+    margin: 5px 0;
+    font-size: 1.2em;
+}
+
+.menu-item .btn {
+    display: inline-block;
+    padding: 8px 15px;
+    margin-top: 10px;
+    background-color: #500711;
+    color: #FDE3CA;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.menu-item .btn:hover {
+    background-color: #7B0424;
+}
+
+.menu-item .item-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover; /* Ensures the image maintains its aspect ratio while fitting into the 60x60 box */
+}
+
+.menu-item {
+    margin-bottom: 20px;
+}
+
+.size-dropdown {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 100%;
+}
+
+.add-to-cart {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #500711; /* Dark red color */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-to-cart:hover {
+    background-color: #ED9BBD; /* Light pink color */
+}
+
+
+/* Cart Section Styling */
+#cart-items .cart-item {
+    background-color: #ED9BBD;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+#cart-items .cart-item h3 {
+    margin: 0 0 10px;
+    font-size: 1.5em;
+    color: #500711;
+}
+
+#cart-items .cart-item p {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+/* Buttons */
+a.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #500711;
+    color: #FDE3CA;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1em;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+a.btn:hover {
+    background-color: #7B0424;
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #500711;
+    color: #FDE3CA;
+    margin-top: 30px;
+}
+
+@media screen and (max-width: 768px) {
+    #filter-form {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #filter-form select, #filter-form .btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    #products {
+        grid-template-columns: 1fr;
+    }
+}
