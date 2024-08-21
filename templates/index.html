@@ -43,10 +43,10 @@
                         <option value="medium">Medium (30.00 TRY)</option>
                         <option value="large">Large (50.00 TRY)</option>
                     </select>
-                    <a href="#" class="btn add-to-cart" data-product-id="1">Add to Cart</a>
+                    <a href="/add-to-cart/1/small" class="btn add-to-cart">Add to Cart</a>
                 </div>
                 <div class="menu-item">
-                    <img src="static/images/latte.jpg" alt="Latte" class="item-image">
+                    <img src="/static/images/latte.jpg" alt="Latte" class="item-image">
                     <h3>Latte</h3>
                     <label for="size-latte">Select Size:</label>
                     <select id="size-latte" name="size-latte" class="size-dropdown">
@@ -54,7 +54,7 @@
                         <option value="medium">Medium (30.00 TRY)</option>
                         <option value="large">Large (50.00 TRY)</option>
                     </select>
-                    <a href="#" class="btn add-to-cart" data-product-id="2">Add to Cart</a>
+                    <a href="/add-to-cart/2/small" class="btn add-to-cart">Add to Cart</a>
                 </div>
                 <div class="menu-item">
                     <img src="/static/images/cold_brew.jpg" alt="Cold Brew" class="item-image">
@@ -65,28 +65,79 @@
                         <option value="medium">Medium (30.00 TRY)</option>
                         <option value="large">Large (50.00 TRY)</option>
                     </select>
-                    <a href="#" class="btn add-to-cart" data-product-id="3">Add to Cart</a>
+                    <a href="/add-to-cart/3/small" class="btn add-to-cart">Add to Cart</a>
                 </div>
-                <!-- Repeat for other coffee items -->
+                <div class="menu-item">
+                    <img src="/static/images/black_coffee.jpg" alt="Black Coffee" class="item-image">
+                    <h3>Black Coffee</h3>
+                    <label for="size-black-coffee">Select Size:</label>
+                    <select id="size-black-coffee" name="size-black-coffee" class="size-dropdown">
+                        <option value="small">Small (15.00 TRY)</option>
+                        <option value="medium">Medium (30.00 TRY)</option>
+                        <option value="large">Large (50.00 TRY)</option>
+                    </select>
+                    <a href="/add-to-cart/4/small" class="btn add-to-cart">Add to Cart</a>
+                </div>
+                <div class="menu-item">
+                    <img src="/static/images/cappuccino.jpg" alt="Cappuccino" class="item-image">
+                    <h3>Cappuccino</h3>
+                    <label for="size-cappuccino">Select Size:</label>
+                    <select id="size-cappuccino" name="size-cappuccino" class="size-dropdown">
+                        <option value="small">Small (15.00 TRY)</option>
+                        <option value="medium">Medium (30.00 TRY)</option>
+                        <option value="large">Large (50.00 TRY)</option>
+                    </select>
+                    <a href="/add-to-cart/5/small" class="btn add-to-cart">Add to Cart</a>
+                </div>
+                <div class="menu-item">
+                    <img src="/static/images/matcha_latte.jpg" alt="Matcha Latte" class="item-image">
+                    <h3>Matcha Latte</h3>
+                    <label for="size-matcha_latte">Select Size:</label>
+                    <select id="size-matcha_latte" name="matcha_latte" class="size-dropdown">
+                        <option value="small">Small (15.00 TRY)</option>
+                        <option value="medium">Medium (30.00 TRY)</option>
+                        <option value="large">Large (50.00 TRY)</option>
+                    </select>
+                    <a href="/add-to-cart/6/small" class="btn add-to-cart">Add to Cart</a>
+                </div>
+                <section id="coffees">
+                    <h2>Our Dessert</h2>
+                <div class="menu-item">
+                    <img src="/static/images/ice_cream_waffles.jpg" alt="Ice Cream Waffles" class="item-image">
+                    <h3>Ice Cream Waffles</h3>
+                    <a href="/add-to-cart/7/small" class="btn add-to-cart">Add to Cart</a>
+                </div>
+                <div class="menu-item">
+                    <img src="/static/images/cheesecake.jpg" alt="Cheesecake" class="item-image">
+                    <h3>Cheesecake</h3>
+                    <label for="size-cheesecake">Select Size:</label>
+                    <a href="/add-to-cart/8/small" class="btn add-to-cart">Add to Cart</a>
+                </div>
             </div>
         </section>
         
         <section id="products">
-            {% for product in products %}
-                <div class="menu-item">
-                    <img src="{{ url_for('static', filename='images/' + product['name'].lower().replace(' ', '_') + '.jpg') }}" alt="{{ product['name'] }}" class="item-image">
-                    <h3>{{ product['name'] }}</h3>
-                    {% if product['type'] == 'coffee' %}
-                        {% for size, price in product['sizes'].items() %}
-                            <p>{{ size.capitalize() }}: {{ price }} TRY</p>
-                            <a href="/add-to-cart/{{ product['id'] }}/{{ product['type'] }}/{{ size }}" class="btn">Add to Cart ({{ size.capitalize() }})</a>
-                        {% endfor %}
-                    {% else %}
-                        <p>Price: {{ product['price'] }} TRY</p>
-                        <a href="/add-to-cart/{{ product['id'] }}/{{ product['type'] }}" class="btn">Add to Cart</a>
-                    {% endif %}
-                </div>
-            {% endfor %}
+            <div class="menu-item">
+                <img src="/static/images/espresso_coffee.jpg" alt="Espresso Coffee" class="item-image">
+                <h3>Espresso Coffee</h3>
+                <p>Small: 15.00 TRY</p>
+                <a href="/add-to-cart/1/coffee/small" class="btn">Add to Cart (Small)</a>
+                <p>Medium: 30.00 TRY</p>
+                <a href="/add-to-cart/1/coffee/medium" class="btn">Add to Cart (Medium)</a>
+                <p>Large: 50.00 TRY</p>
+                <a href="/add-to-cart/1/coffee/large" class="btn">Add to Cart (Large)</a>
+            </div>
+            <div class="menu-item">
+                <img src="/static/images/latte.jpg" alt="Latte" class="item-image">
+                <h3>Latte</h3>
+                <p>Small: 15.00 TRY</p>
+                <a href="/add-to-cart/2/coffee/small" class="btn">Add to Cart (Small)</a>
+                <p>Medium: 30.00 TRY</p>
+                <a href="/add-to-cart/2/coffee/medium" class="btn">Add to Cart (Medium)</a>
+                <p>Large: 50.00 TRY</p>
+                <a href="/add-to-cart/2/coffee/large" class="btn">Add to Cart (Large)</a>
+            </div>
+            <!-- Repeat similar blocks for other products -->
         </section>
 
         <a href="/cart" class="btn">View Cart</a>

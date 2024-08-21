@@ -135,6 +135,20 @@ main {
     background-color: #ED9BBD; /* Light pink color */
 }
 
+.add-to-cart-section,
+.price-section {
+    width: 100%;
+    max-width: 250px; /* Adjust this value as needed */
+    margin: 0 auto;
+}
+
+.filter-section {
+    width: 100%;
+    max-width: 250px; /* Ensure this matches the 'add-to-cart' and 'price' sections */
+    margin: 0 auto;
+}
+
+
 
 /* Cart Section Styling */
 #cart-items .cart-item {
