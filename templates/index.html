@@ -31,113 +31,25 @@
             <button type="submit" class="btn">Filter</button>
         </form>
 
-        <section id="coffees">
-            <h2>Our Coffees</h2>
-            <div class="menu-items">
-                <div class="menu-item">
-                    <img src="/static/images/espresso_coffee.jpg" alt="Espresso Coffee" class="item-image">
-                    <h3>Espresso Coffee</h3>
-                    <label for="size-espresso">Select Size:</label>
-                    <select id="size-espresso" name="size-espresso" class="size-dropdown">
-                        <option value="small">Small (15.00 TRY)</option>
-                        <option value="medium">Medium (30.00 TRY)</option>
-                        <option value="large">Large (50.00 TRY)</option>
-                    </select>
-                    <a href="/add-to-cart/1/small" class="btn add-to-cart">Add to Cart</a>
-                </div>
-                <div class="menu-item">
-                    <img src="/static/images/latte.jpg" alt="Latte" class="item-image">
-                    <h3>Latte</h3>
-                    <label for="size-latte">Select Size:</label>
-                    <select id="size-latte" name="size-latte" class="size-dropdown">
-                        <option value="small">Small (15.00 TRY)</option>
-                        <option value="medium">Medium (30.00 TRY)</option>
-                        <option value="large">Large (50.00 TRY)</option>
-                    </select>
-                    <a href="/add-to-cart/2/small" class="btn add-to-cart">Add to Cart</a>
-                </div>
-                <div class="menu-item">
-                    <img src="/static/images/cold_brew.jpg" alt="Cold Brew" class="item-image">
-                    <h3>Cold Brew</h3>
-                    <label for="size-cold-brew">Select Size:</label>
-                    <select id="size-cold-brew" name="size-cold-brew" class="size-dropdown">
-                        <option value="small">Small (15.00 TRY)</option>
-                        <option value="medium">Medium (30.00 TRY)</option>
-                        <option value="large">Large (50.00 TRY)</option>
-                    </select>
-                    <a href="/add-to-cart/3/small" class="btn add-to-cart">Add to Cart</a>
-                </div>
-                <div class="menu-item">
-                    <img src="/static/images/black_coffee.jpg" alt="Black Coffee" class="item-image">
-                    <h3>Black Coffee</h3>
-                    <label for="size-black-coffee">Select Size:</label>
-                    <select id="size-black-coffee" name="size-black-coffee" class="size-dropdown">
-                        <option value="small">Small (15.00 TRY)</option>
-                        <option value="medium">Medium (30.00 TRY)</option>
-                        <option value="large">Large (50.00 TRY)</option>
-                    </select>
-                    <a href="/add-to-cart/4/small" class="btn add-to-cart">Add to Cart</a>
-                </div>
-                <div class="menu-item">
-                    <img src="/static/images/cappuccino.jpg" alt="Cappuccino" class="item-image">
-                    <h3>Cappuccino</h3>
-                    <label for="size-cappuccino">Select Size:</label>
-                    <select id="size-cappuccino" name="size-cappuccino" class="size-dropdown">
-                        <option value="small">Small (15.00 TRY)</option>
-                        <option value="medium">Medium (30.00 TRY)</option>
-                        <option value="large">Large (50.00 TRY)</option>
-                    </select>
-                    <a href="/add-to-cart/5/small" class="btn add-to-cart">Add to Cart</a>
-                </div>
-                <div class="menu-item">
-                    <img src="/static/images/matcha_latte.jpg" alt="Matcha Latte" class="item-image">
-                    <h3>Matcha Latte</h3>
-                    <label for="size-matcha_latte">Select Size:</label>
-                    <select id="size-matcha_latte" name="matcha_latte" class="size-dropdown">
-                        <option value="small">Small (15.00 TRY)</option>
-                        <option value="medium">Medium (30.00 TRY)</option>
-                        <option value="large">Large (50.00 TRY)</option>
-                    </select>
-                    <a href="/add-to-cart/6/small" class="btn add-to-cart">Add to Cart</a>
-                </div>
-                <section id="coffees">
-                    <h2>Our Dessert</h2>
-                <div class="menu-item">
-                    <img src="/static/images/ice_cream_waffles.jpg" alt="Ice Cream Waffles" class="item-image">
-                    <h3>Ice Cream Waffles</h3>
-                    <a href="/add-to-cart/7/small" class="btn add-to-cart">Add to Cart</a>
-                </div>
-                <div class="menu-item">
-                    <img src="/static/images/cheesecake.jpg" alt="Cheesecake" class="item-image">
-                    <h3>Cheesecake</h3>
-                    <label for="size-cheesecake">Select Size:</label>
-                    <a href="/add-to-cart/8/small" class="btn add-to-cart">Add to Cart</a>
-                </div>
-            </div>
-        </section>
-        
         <section id="products">
+            {% for product in products %}
             <div class="menu-item">
-                <img src="/static/images/espresso_coffee.jpg" alt="Espresso Coffee" class="item-image">
-                <h3>Espresso Coffee</h3>
-                <p>Small: 15.00 TRY</p>
-                <a href="/add-to-cart/1/coffee/small" class="btn">Add to Cart (Small)</a>
-                <p>Medium: 30.00 TRY</p>
-                <a href="/add-to-cart/1/coffee/medium" class="btn">Add to Cart (Medium)</a>
-                <p>Large: 50.00 TRY</p>
-                <a href="/add-to-cart/1/coffee/large" class="btn">Add to Cart (Large)</a>
+                <img src="/static/images/{{ product.name | lower | replace(' ', '_') }}.jpg" alt="{{ product.name }}" class="item-image">
+                <h3>{{ product.name }}</h3>
+                {% if product.type == 'coffee' %}
+                <label for="size-{{ product.id }}">Select Size:</label>
+                <select id="size-{{ product.id }}" name="size-{{ product.id }}" class="size-dropdown" onchange="updateCartLink('{{ product.id }}', this.value)">
+                    {% for size, price in product.sizes.items() %}
+                    <option value="{{ size }}">{{ size.capitalize() }} ({{ "%.2f" | format(price) }} TRY)</option>
+                    {% endfor %}
+                </select>
+                <a id="add-to-cart-{{ product.id }}" href="/add-to-cart/{{ product.id }}/small" class="btn add-to-cart">Add to Cart</a>
+                {% else %}
+                <p>Price: {{ "%.2f" | format(product.sizes['regular']) }} TRY</p>
+                <a href="/add-to-cart/{{ product.id }}/regular" class="btn add-to-cart">Add to Cart</a>
+                {% endif %}
             </div>
-            <div class="menu-item">
-                <img src="/static/images/latte.jpg" alt="Latte" class="item-image">
-                <h3>Latte</h3>
-                <p>Small: 15.00 TRY</p>
-                <a href="/add-to-cart/2/coffee/small" class="btn">Add to Cart (Small)</a>
-                <p>Medium: 30.00 TRY</p>
-                <a href="/add-to-cart/2/coffee/medium" class="btn">Add to Cart (Medium)</a>
-                <p>Large: 50.00 TRY</p>
-                <a href="/add-to-cart/2/coffee/large" class="btn">Add to Cart (Large)</a>
-            </div>
-            <!-- Repeat similar blocks for other products -->
+            {% endfor %}
         </section>
 
         <a href="/cart" class="btn">View Cart</a>
@@ -146,5 +58,11 @@
     <footer>
         <p>&copy; 2024 HaveABreak Coffee Shop. All rights reserved.</p>
     </footer>
+
+    <script>
+        function updateCartLink(productId, size) {
+            document.getElementById('add-to-cart-' + productId).href = '/add-to-cart/' + productId + '/' + size;
+        }
+    </script>
 </body>
 </html>

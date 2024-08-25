@@ -3,22 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Confirmation - HaveABreak Coffee Shop</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <header>
-        <h1>Order Confirmation</h1>
-    </header>
-
-    <main>
-        <h2>Thank you for your order, {{ name }}!</h2>
-        <p>Your order has been placed successfully. The total price is {{ total_price }} TRY.</p>
-        <a href="/index" class="btn">Back to Home</a>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 HaveABreak Coffee Shop. All rights reserved.</p>
-    </footer>
+    <h1>Order Confirmation</h1>
+    <p>Thank you, {{ name }}! Your order has been received.</p>
+    <p>The total amount is <strong>{{ total_price }} TRY</strong>.</p>
 </body>
 </html>

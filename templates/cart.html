@@ -7,22 +7,32 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <header>
-        <h1>Your Cart</h1>
-    </header>
-
-    <main>
-        <h2>Items in Cart</h2>
-        <ul>
+    <h1>Your Cart</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Product Type</th>
+                <th>Size</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
             {% for item in cart.values() %}
-                <li>{{ item['product_type'].capitalize() }} ({{ item['size'] }}): {{ item['quantity'] }} x {{ item['price'] }} TRY</li>
+            <tr>
+                <td>{{ item['product_name'] }}</td>
+                <td>{{ item['product_type'] }}</td>
+                <td>{{ item['size'] }}</td>
+                <td>{{ item['quantity'] }}</td>
+                <td>{{ "{:.2f}".format(item['price']) }} TRY</td>
+                <td>{{ "{:.2f}".format(item['price'] * item['quantity']) }} TRY</td>
+            </tr>
             {% endfor %}
-        </ul>
-        <h3>Total Price: {{ total_price }} TRY</h3>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 HaveABreak Coffee Shop. All rights reserved.</p>
-    </footer>
+        </tbody>
+    </table>
+    <h2>Total: {{ "{:.2f}".format(total_price) }} TRY</h2>
+    <a href="{{ url_for('checkout') }}">Proceed to Checkout</a>
 </body>
 </html>
